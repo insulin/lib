@@ -1,0 +1,7 @@
+# Zend Studio files
+.buildpath
+.project
+.settings
+ 
+# Netbeans files
+nbproject

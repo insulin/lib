@@ -7,7 +7,7 @@ class Insulin_Relationship_LoadFailureException extends Insulin_Relationship_Exc
 
     public function __construct($relationship, $id, $objectName)
     {
-        parent::__construct($relationship, $id, $objectName);
+        parent::__construct(array($relationship, $id, $objectName));
     }
 
 }

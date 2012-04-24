@@ -7,6 +7,6 @@ class Insulin_DisabledFeatureException extends Insulin_Exception
 
     public function __construct($feature, $module)
     {
-        parent::__construct($feature, $module);
+        parent::__construct(array($feature, $module));
     }
 }

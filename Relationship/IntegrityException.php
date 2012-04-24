@@ -7,7 +7,7 @@ class Insulin_Relationship_IntegrityException extends Insulin_Relationship_Excep
 
     public function __construct($relationship, $relationsCount, $relationIds)
     {
-        parent::__construct($relationship, $relationsCount, $relationIds);
+        parent::__construct(array($relationship, $relationsCount, $relationIds));
     }
 
 }

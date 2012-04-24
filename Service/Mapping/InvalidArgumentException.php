@@ -7,7 +7,7 @@ class Insulin_Service_Mapping_InvalidArgumentException extends Insulin_Service_M
 
     public function __construct($value, $argument)
     {
-        parent::__construct($value, $argument);
+        parent::__construct(array($value, $argument));
     }
 
 }

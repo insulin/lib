@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
@@ -16,6 +17,15 @@ require_once 'Insulin/Exception.php';
 class Insulin_DisabledFeatureException extends Insulin_Exception
 {
 
+    /**
+     * Constructs the code and message of this Exception based on Insulin
+     * Exception.
+     *
+     * @param type $feature
+     *   The feature disabled.
+     * @param type $module
+     *   The module that should support that feature.
+     */
     public function __construct($feature, $module)
     {
         parent::__construct(array($feature, $module));

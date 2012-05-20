@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
@@ -42,7 +43,6 @@ class Insulin_Bootstrap extends Insulin_Bootstrap_Abstract
         require_once 'Insulin/Logger/Manager.php';
         $log = Insulin_Logger_Manager::getLogger();
 
-        // override global timedate of sugar with Insulin one
         global $timedate;
         require_once 'Insulin/Utils/DateTime.php';
         $timedate = Insulin_Utils_DateTime::getInstance();

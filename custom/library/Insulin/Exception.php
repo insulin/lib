@@ -101,11 +101,10 @@ class Insulin_Exception extends Exception
      */
     public function getLogMessage()
     {
-
         $eCode = $this->getCode();
         $eMessage = $this->getMessage();
 
-        //Build a pretty print Trace layout
+        // Build a pretty print Trace layout
         $eTraceString = $this->getTraceAsString();
         $eTraceArray = explode('#', $eTraceString);
         $eTrace = implode("\t\t#", $eTraceArray);

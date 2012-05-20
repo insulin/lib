@@ -1,14 +1,16 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
- * (c) Clemente Raposo, Filipe Guerra, João Morais
+ * Copyright (c) 2008-2012 Clemente Raposo, Filipe Guerra, João Morais
+ * http://lib.sugarmeetsinsulin.com
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @license MIT
- *   See LICENSE.txt shipped with this library.
+ *   See LICENSE shipped with this library.
  */
 
 class Insulin_Utils_DateTime extends TimeDate

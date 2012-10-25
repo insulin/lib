@@ -112,7 +112,7 @@ class Insulin_Exception extends Exception
 
         $message = "\n\tAn Exception was thrown with Code: '$eCode',\n\tMessage: '$eMessage',\n\tStackTrace:\n$eTrace";
 
-        $previous = $this->getPrevious();
+        $previous = method_exists($this, 'getPrevious') ? $this->getPrevious() : null;
         if ($previous && $previous instanceof Insulin_Exception) {
             $message .= $previous->getLogMessage();
         }

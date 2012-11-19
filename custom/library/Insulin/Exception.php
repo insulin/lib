@@ -85,7 +85,11 @@ class Insulin_Exception extends Exception
                 $messageText = vsprintf($messageText, $args);
             }
         }
-        parent::__construct($messageText, 0, $previous);
+        if (version_compare(PHP_VERSION, '5.3') >= 0) {
+            parent::__construct($messageText, 0, $previous);
+        } else {
+            parent::__construct($messageText, 0);
+        }
         /**
          * @see https://bugs.php.net/bug.php?id=39615
          *   Allowing a non-numeric $code in the Exception constructor seems like the right solution.

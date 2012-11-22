@@ -53,7 +53,6 @@ class Insulin_Utils_DateTime extends TimeDate
     {
         if (is_string($date)) {
             $date = $this->fromString($date);
-            var_dump($date);
         }
         $date->setTimezone(self::$gmtTimezone);
         return $date->format($this->get_db_date_time_format());

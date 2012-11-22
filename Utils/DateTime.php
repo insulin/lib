@@ -39,7 +39,7 @@ class Insulin_Utils_DateTime extends TimeDate
             return new SugarDateTime($date, $this->_getUserTZ($user));
         } catch (Exception $e) {
             require_once 'Insulin/Utils/DateTime/Exception.php';
-            throw new Insulin_Utils_DateTime_Exception($date, $e->getCode(), $e->getMessage());
+            throw new Insulin_Utils_DateTime_Exception($date, $e);
         }
     }
 

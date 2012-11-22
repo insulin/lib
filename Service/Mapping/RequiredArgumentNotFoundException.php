@@ -7,7 +7,7 @@ class Insulin_Service_Mapping_RequiredArgumentNotFoundException extends Insulin_
 
     public function __construct($argument)
     {
-        parent::__construct($argument);
+        parent::__construct(array($argument));
     }
 
 }

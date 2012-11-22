@@ -8,8 +8,8 @@ class Insulin_Utils_DateTime_Exception extends Insulin_Exception
     /**
      * @param mixed $origDate
      */
-    public function __construct($origDate, $code = null, $message = null)
+    public function __construct($origDate, Exception $previous)
     {
-        parent::__construct($origDate, $code, $message);
+        parent::__construct(array($origDate), $previous);
     }
 }

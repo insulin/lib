@@ -1,0 +1,33 @@
+<?php
+
+/*
+ * This file is part of the Insulin Lib.
+ *
+ * Copyright (c) 2008-2012 Clemente Raposo, Filipe Guerra, João Morais
+ * http://lib.sugarmeetsinsulin.com
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @license MIT
+ *   See LICENSE shipped with this library.
+ */
+
+/**
+ * @file
+ * This is used to simulate some functions declared on SugarCRM that are used by
+ * the Insulin Library.
+ */
+set_include_path(implode(PATH_SEPARATOR, array(
+            realpath(__DIR__ . '/../../'),
+            get_include_path()
+        )));
+
+/**
+ * This function simulates the retrieval of an application language file and
+ * returns an empty array.
+ */
+function return_application_language($language)
+{
+    return array();
+}

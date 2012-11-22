@@ -1,7 +1,7 @@
 What happens when Sugar meets Insulin?
 ======
 
-2.x-dev: [![Build Status](https://secure.travis-ci.org/insulin/insulin-lib.png?branch=2.x-dev)](http://travis-ci.org/insulin/insulin-lib)
+master: [![Build Status](https://secure.travis-ci.org/insulin/lib.png?branch=master)](http://travis-ci.org/insulin/lib)
 
 What is Insulin?
 -----------------

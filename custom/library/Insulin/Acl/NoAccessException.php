@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
@@ -16,6 +17,17 @@ require_once 'Insulin/Acl/Exception.php';
 class Insulin_Acl_NoAccessException extends Insulin_Acl_Exception
 {
 
+    /**
+     * Use this exception when a user doesn't have enough privileges do access
+     * a module's feature.
+     *
+     * @param string $moduleName
+     *   Module name.
+     * @param string $accessLevel
+     *   Access level, e.g: view, list, delete, edit.
+     *
+     * @see modules/ACLActions/actiondefs.php
+     */
     public function __construct($moduleName, $accessLevel)
     {
         parent::__construct(array($moduleName, $accessLevel));

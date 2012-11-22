@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
@@ -16,9 +17,19 @@ require_once 'Insulin/Relationship/Exception.php';
 class Insulin_Relationship_LoadFailureException extends Insulin_Relationship_Exception
 {
 
-    public function __construct($relationship, $id, $objectName)
+    /**
+     * Use this exception when you fail to load a relationship with success.
+     *
+     * @param string $relationshipLink
+     *   Relationship link name.
+     * @param string $id
+     *   SugarBean id.
+     * @param string $objectName
+     *   SugarBean object name.
+     */
+    public function __construct($relationshipLink, $id, $objectName)
     {
-        parent::__construct(array($relationship, $id, $objectName));
+        parent::__construct(array($relationshipLink, $id, $objectName));
     }
 
 }

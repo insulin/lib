@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Insulin Lib.
  *
@@ -16,9 +17,20 @@ require_once 'Insulin/Relationship/Exception.php';
 class Insulin_Relationship_IntegrityException extends Insulin_Relationship_Exception
 {
 
-    public function __construct($relationship, $relationsCount, $relationIds)
+    /**
+     * Use this exception when you find a relationship with a number of
+     * records different than the ones expected.
+     *
+     * @param string $relationshipLink
+     *   Relationship link name.
+     * @param int $relationsCount
+     *   Number of related objects found.
+     * @param array $relationIds
+     *   An array of related objects id's.
+     */
+    public function __construct($relationshipLink, $relationsCount, array $relationIds)
     {
-        parent::__construct(array($relationship, $relationsCount, $relationIds));
+        parent::__construct(array($relationshipLink, $relationsCount, $relationIds));
     }
 
 }

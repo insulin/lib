@@ -14,15 +14,18 @@
  */
 
 require_once 'Zend/Http/Client.php';
-require_once 'Insulin/Auth/AutenticationFailedException.php';
 
-class Insulin_Service_Rest_Client
+abstract class Insulin_Service_Rest_Client
 {
+
+    /**
+     * HTTP request methods
+     */
     const GET = Zend_Http_Client::GET;
     const POST = Zend_Http_Client::POST;
     const PUT = Zend_Http_Client::PUT;
     const DELETE = Zend_Http_Client::DELETE;
-    
+
     protected $_link = null;
     protected $_endpoint = '';
 
@@ -40,44 +43,94 @@ class Insulin_Service_Rest_Client
     {
         return $this->_link;
     }
-    
-    public function doRequest($name, array $arguments, $method)
+
+    /**
+     * Make a HTTP request.
+     * @param string $method
+     * @param array $getParameters
+     * @param array $postParameters
+     * @throws Insulin_Service_Rest_ConnectionFailedException
+     * @throws Insulin_Service_Rest_HttpErrorException
+     */
+    protected function _doRequest($method, array $getParameters = null, array $postParameters = null)
     {
-         $link = $this->getLink();
-         $link->setUri($this->_endpoint.$name);
-         $link->setMethod($method);
-         $response = $link->request();
-         return $response;
-    }
-    
-    public function doPost($name, array $arguments = array())
-    {
-        if (!empty($arguments)) {
-            $link = $this->getLink();
-            $link->setParameterPost($arguments);
+        $link = $this->getLink();
+
+        if (!empty($postParameters)) {
+            $link->setParameterPost($postParameters);
         }
-        $response = $this->doRequest($name, $arguments, self::POST);
+        if (!empty($getParameters)) {
+            $link->setParameterGet($getParameters);
+        }
+
+        $link->setUri($this->_endpoint);
+        $link->setMethod($method);
+
+        require_once 'Zend/Http/Exception.php';
+        try {
+            $response = $link->request();
+        } catch (Zend_Http_Exception $e) {
+            require_once 'Insulin/Service/Rest/ConnectionFailedException.php';
+            throw new Insulin_Service_Rest_ConnectionFailedException();
+        }
+
+        if ($response->isError()) {
+            require_once 'Insulin/Service/Rest/HttpErrorException.php';
+            // extract error code from response
+            $code = Zend_Http_Response::extractCode($response);
+            // extract standard error message from response
+            $msg = Zend_Http_Response::responseCodeAsText($code);
+            throw new Insulin_Service_Rest_HttpErrorException($code, $msg);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Makes a POST REST request.
+     *
+     * @param array $postParameters
+     * @param array $getParameters
+     */
+    public function post(array $postParameters, array $getParameters = null)
+    {
+        $response = $this->_doRequest(self::POST, $getParameters, $postParameters);
         return $response->getBody();
     }
-    
-    public function doGet($name, array $arguments = array())
+
+    /**
+     * Makes a GET REST request.
+     * 
+     * @param array $getParameters
+     */
+    public function get(array $getParameters = null)
     {
-        if (!empty($arguments)) {
-            $link = $this->getLink();
-            $link->setParameterGet($arguments);
-        }
-        $response = $this->doRequest($name, $arguments, self::GET);
+        $response = $this->_doRequest(self::GET, $getParameters, null);
         return $response->getBody();
     }
-    
-    public function doPut($name, array $arguments = array())
+
+    /**
+     * Makes a PUT REST request.
+     *
+     * @param array $putParameters
+     * @param array $getParameters
+     */
+    public function put(array $putParameters, array $getParameters = null)
     {
-        if (!empty($arguments)) {
-            $link = $this->getLink();
-            $link->setParameterPost($arguments);
-        }
-        $response = $this->doRequest($name, $arguments, self::PUT);
+        $response = $this->_doRequest(self::PUT, $getParameters, $putParameters);
         return $response->getBody();
     }
-    
+
+    /**
+     * Makes a DELETE REST request.
+     *
+     * @param array $deleteParameters
+     * @param array $getParameters
+     */
+    public function delete(array $deleteParameters, array $getParameters = null)
+    {
+        $response = $this->_doRequest(self::DELETE, $getParameters, $deleteParameters);
+        return $response->getBody();
+    }
+
 }

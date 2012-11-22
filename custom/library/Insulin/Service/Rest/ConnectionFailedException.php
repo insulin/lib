@@ -13,6 +13,8 @@
  *   See LICENSE shipped with this library.
  */
 
-abstract class Insulin_Service_Server
+require_once 'Insulin/Service/Rest/Exception.php';
+
+class Insulin_Service_Rest_ConnectionFailedException extends Insulin_Service_Rest_Exception
 {
 }

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Abstract bootstrap to enable the use of any bootstrap implementation.
+ *
+ * All _init* methods of the class that implements this will be called
+ * automatically with the order that they appear on the code after the run
+ * method is invoked.
+ */
 abstract class Insulin_Bootstrap_Abstract
 {
     

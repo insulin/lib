@@ -2,11 +2,14 @@
 
 require_once 'custom/library/Insulin/Bootstrap/Abstract.php';
 
+/**
+ * Insulin bootstrap to initialize many customizations to SugarCRM core code.
+ */
 class Insulin_Bootstrap extends Insulin_Bootstrap_Abstract
 {
 
     /**
-     * Initializes custom libraries paths.
+     * Initializes custom libraries paths for easier require_once path.
      */
     protected function _initLibs()
     {
@@ -17,12 +20,11 @@ class Insulin_Bootstrap extends Insulin_Bootstrap_Abstract
     }
 
     /**
-     * Initializes Insulin Lib.
+     * Initializes Insulin Lib with custom logger manager and custom timedate
+     * class.
      */
     protected function _initInsulinLib()
     {
-        global $sugar_config;
-        
         require_once 'Insulin/Exception.php';
 
         global $log;
